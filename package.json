@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/lifan2000/vite-cli/issues"
   },
-  "homepage": "https://github.com/lifan2000/vite-cli#readme"
+  "homepage": "https://github.com/lifan2000/vite-cli#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
 }
