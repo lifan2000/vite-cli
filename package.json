@@ -1,21 +1,18 @@
 {
   "name": "vite-cli",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
   "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lifan2000/vite-cli.git"
   },
-  "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/lifan2000/vite-cli/issues"
   },
   "homepage": "https://github.com/lifan2000/vite-cli#readme",
-  "devDependencies": {
-    "typescript": "^4.9.4"
-  }
+  "devDependencies": {}
 }

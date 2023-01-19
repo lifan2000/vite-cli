@@ -1,0 +1,14 @@
+{
+  "name": "@lf/vite",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": "./bin/index.js",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "license": "ISC"
+}
