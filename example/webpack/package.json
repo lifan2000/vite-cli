@@ -1,9 +1,8 @@
 {
-  "name": "@lf/utils",
+  "name": "@example/webpack",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "type": "module",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC"

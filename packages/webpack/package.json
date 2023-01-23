@@ -2,7 +2,9 @@
   "name": "@lf/webpack",
   "version": "1.0.0",
   "type": "module",
-  "bin": "./bin/index.js",
+  "bin": {
+    "vite":"bin/index.js"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm"
   },

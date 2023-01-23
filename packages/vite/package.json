@@ -2,13 +2,18 @@
   "name": "@lf/vite",
   "version": "1.0.0",
   "type": "module",
-  "bin": "./bin/index.js",
+  "bin": {
+    "vite": "bin/index.js"
+  },
   "scripts": {
     "preinstall": "npx only-allow pnpm"
   },
   "files": [
-    "bin",
+    "bin/*",
     "src"
   ],
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@lf/utils": "workspace:^1.0.0"
+  }
 }
