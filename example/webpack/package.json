@@ -2,8 +2,14 @@
   "name": "@example/webpack",
   "version": "1.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "start": "lfWebpack dev --port=32003 "
+  },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@lf/utils": "workspace:^1.0.0",
+    "@lf/webpack": "workspace:^1.0.0"
+  }
 }

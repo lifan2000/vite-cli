@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "bin": {
-    "vite": "bin/index.js"
+    "lfVite": "bin/index.js"
   },
-  "scripts": {
-    "preinstall": "npx only-allow pnpm"
-  },
+  "scripts": {},
   "files": [
     "bin/*",
     "src"

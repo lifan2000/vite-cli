@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "type": "module",
   "bin": {
-    "vite":"bin/index.js"
+    "lfWebpack": "bin/index.js"
   },
-  "scripts": {
-    "preinstall": "npx only-allow pnpm"
-  },
+  "scripts": {},
   "files": [
     "bin",
     "src"
   ],
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@lf/utils": "workspace:^1.0.0",
+    "webpack": "^5.75.0",
+    "webpack-dev-server": "^4.11.1"
+  }
 }
