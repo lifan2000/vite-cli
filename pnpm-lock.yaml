@@ -3,7 +3,10 @@ lockfileVersion: 5.3
 importers:
 
   .:
-    specifiers: {}
+    specifiers:
+      cac: ^6.7.14
+    devDependencies:
+      cac: registry.npmmirror.com/cac/6.7.14
 
   example/vite:
     specifiers:
@@ -623,6 +626,13 @@ packages:
     version: 3.1.2
     engines: {node: '>= 0.8'}
     dev: false
+
+  registry.npmmirror.com/cac/6.7.14:
+    resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/cac/-/cac-6.7.14.tgz}
+    name: cac
+    version: 6.7.14
+    engines: {node: '>=8'}
+    dev: true
 
   registry.npmmirror.com/call-bind/1.0.2:
     resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/call-bind/-/call-bind-1.0.2.tgz}

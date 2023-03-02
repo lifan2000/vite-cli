@@ -14,5 +14,7 @@
     "url": "https://github.com/lifan2000/vite-cli/issues"
   },
   "homepage": "https://github.com/lifan2000/vite-cli#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "cac": "^6.7.14"
+  }
 }
