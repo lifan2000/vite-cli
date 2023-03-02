@@ -8,16 +8,17 @@ cli
   .option("--port <port>", `[number] specify port`)
   .action(async (options) => {
     try {
-      const { createServer } = await import("./server");
+      const { createServer } = await import("./server.js");
       createServer(options);
     } catch (error) {
+      console.log("ssssssssss", error);
       process.exit(1);
     }
   });
 
 cli
   .command("build", "build for production")
-  .option("--outDir <dir>", `[string] output directory (default: dist)`)
+  .option("--outDir <dir>", `[string] output directory (default: build)`)
   .action((options) => {
     try {
       console.log("options", options);

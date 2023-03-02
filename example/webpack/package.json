@@ -11,5 +11,9 @@
   "dependencies": {
     "@lf/utils": "workspace:^1.0.0",
     "@lf/webpack": "workspace:^1.0.0"
+  },
+  "devDependencies": {
+    "loader-utils": "^3.2.1",
+    "sass": "^1.58.3"
   }
 }

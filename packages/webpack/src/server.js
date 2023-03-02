@@ -1,10 +1,12 @@
 import WebpackDevServer from "webpack-dev-server";
-import chalk from "@lf/utils";
-import configFactory from "./webpackConfig";
+import configFactory from "./webpackConfig.js";
+process.env.NODE_ENV = "development";
 // const webpackConfig = configFactory("dev");
 // const compiler = webpack(webpackConfig);
 
 export function createServer(params) {
+  const webpackConfig = configFactory(params);
+  console.log(222);
   //   const { host = "127.0.0.1", port = "30003" } = params;
   //   const devServer = new WebpackDevServer(
   //     {
