@@ -1,5 +1,9 @@
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
+import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import WebpackBar from "webpack";
 import { resolveApp } from "./paths.js";
 import jsRules from "./jsConfig.js";
 import cssRules from "./cssConfig.js";
@@ -35,6 +39,8 @@ export default (params = {}) => {
       : {},
   };
 
+  const outPutPath = resolveApp(outDir);
+
   return {
     target: ["browserslist"],
     mode: process.env.NODE_ENV || "development",
@@ -43,7 +49,7 @@ export default (params = {}) => {
     entry: paths.appIndexJs,
     output: {
       clean: true,
-      path: resolveApp(outDir),
+      path: outPutPath,
       filename: !isDev
         ? `static/js/[name].[contenthash:8].js`
         : "static/js/bundle.js",
@@ -81,5 +87,30 @@ export default (params = {}) => {
         },
       ],
     },
+    plugins: [
+      new FriendlyErrorsWebpackPlugin(),
+      new WebpackBar(),
+      new WebpackManifestPlugin({
+        fileName: "asset-manifest.json",
+        publicPath: paths.publicUrlOrPath,
+      }),
+      new CopyPlugin({
+        patterns: [
+          {
+            from: paths.appPublic,
+            to: outPutPath,
+            globOptions: {
+              ignore: ["**/index.html"],
+            },
+          },
+        ],
+      }),
+      new HtmlWebpackPlugin({
+        template: paths.appHtml,
+        minify: {
+          removeComments: false,
+        },
+      }),
+    ],
   };
 };

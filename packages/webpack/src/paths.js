@@ -14,7 +14,8 @@ const moduleFileExtensions = [
   "jsx",
 ];
 const appDirectory = fs.realpathSync(process.cwd());
-export const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
+export const resolveApp = (relativePath) =>
+  path.resolve(appDirectory, relativePath);
 const resolveModule = (resolveFn, filePath) => {
   const extension = moduleFileExtensions.find((extension) =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`))
@@ -28,4 +29,6 @@ export default {
   appSrc: resolveApp("src"),
   publicUrlOrPath: "/",
   appIndexJs: resolveModule(resolveApp, "src/index"),
+  appPublic: resolveApp("public"),
+  appHtml: resolveApp("public/index.html"),
 };
