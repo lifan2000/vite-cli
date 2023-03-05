@@ -6,6 +6,8 @@ cli
   .command("dev", "start dev server")
   .option("--host [host]", `[string] specify hostname`)
   .option("--port <port>", `[number] specify port`)
+  .option("--configFile <configFile>", "webpack config file")
+
   .action(async (options) => {
     try {
       const { createServer } = await import("./server.js");

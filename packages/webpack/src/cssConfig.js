@@ -30,14 +30,14 @@ const getCSSModuleLocalIdent = (context, _, localName, options) => {
 
 const getCssLoaders = (cssOptions) => {
   const isDev = process.env.NODE_ENV === "development";
-  let _loader = "style-loader";
-  if (isDev) {
-    _loader = {
-      loader: MiniCssExtractPlugin.loader,
-    };
-  }
+  // let _loader = "style-loader";
+  // if (isDev) {
+  //   _loader = {
+  //     loader: MiniCssExtractPlugin.loader,
+  //   };
+  // }
   const loaders = [
-    _loader,
+    "style-loader",
     {
       loader: "css-loader",
       options: cssOptions,

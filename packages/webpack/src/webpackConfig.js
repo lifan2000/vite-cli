@@ -1,18 +1,30 @@
+import { fileURLToPath } from "node:url";
+import { createRequire } from "node:module";
+import fs from "node:fs";
+import chalk from "@lf/utils";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import WebpackBar from "webpack";
-import { resolveApp } from "./paths.js";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import paths, { resolveApp, moduleFileExtensions } from "./paths.js";
 import jsRules from "./jsConfig.js";
 import cssRules from "./cssConfig.js";
 import fileRules from "./fileCong.js";
 
 const isDev = process.env.NODE_ENV === "development";
+const __filename = fileURLToPath(import.meta.url);
+const nodeModulesRequire = createRequire(paths.appNodeModules);
 
 export default (params = {}) => {
-  const { outDir = "build", esBuild = true } = params;
+  const { outDir = "build", esBuild = true, configFile } = params;
+
+  const overWriteConfigPath = configFile
+    ? resolveApp(configFile)
+    : paths.overWriteFile;
+
   let terserPluginOptions = {
     minify: esBuild
       ? terserPluginOptions.esbuildMinify
@@ -40,8 +52,7 @@ export default (params = {}) => {
   };
 
   const outPutPath = resolveApp(outDir);
-
-  return {
+  const config = {
     target: ["browserslist"],
     mode: process.env.NODE_ENV || "development",
     bail: !isDev, //出错时中止打包，开发时在终端显示错误信息
@@ -65,7 +76,6 @@ export default (params = {}) => {
       cacheDirectory: paths.appWebpackCache,
       store: "pack",
       buildDependencies: {
-        defaultWebpack: ["webpack/lib/"],
         config: [__filename],
         tsconfig: [paths.appTsConfig, paths.appJsConfig].filter((f) =>
           fs.existsSync(f)
@@ -111,6 +121,84 @@ export default (params = {}) => {
           removeComments: false,
         },
       }),
+      ...(!isDev
+        ? [
+            //css文件提取
+            new MiniCssExtractPlugin({
+              filename: "static/css/[name].[contenthash:8].css",
+              chunkFilename: "static/css/[name].[contenthash:8].chunk.css",
+            }),
+          ]
+        : [
+            //ts类型检查,待商榷:生产模式不打开?
+            new ForkTsCheckerWebpackPlugin({
+              async: isDev,
+              typescript: {
+                typescriptPath: nodeModulesRequire("typescript"),
+                configOverwrite: {
+                  compilerOptions: {
+                    sourceMap: true,
+                    skipLibCheck: true,
+                    inlineSourceMap: false,
+                    declarationMap: false,
+                    noEmit: true,
+                    incremental: true,
+                    tsBuildInfoFile: paths.appTsBuildInfoFile,
+                  },
+                },
+                context: paths.appPath,
+                diagnosticOptions: {
+                  syntactic: true,
+                },
+                mode: "write-references",
+              },
+              issue: {
+                include: [
+                  { file: "../**/src/**/*.{ts,tsx}" },
+                  { file: "**/src/**/*.{ts,tsx}" },
+                ],
+                exclude: [
+                  { file: "**/src/**/__tests__/**" },
+                  { file: "**/src/**/?(*.){spec|test}.*" },
+                  { file: "**/src/setupProxy.*" },
+                  { file: "**/src/setupTests.*" },
+                  { file: "**/node_modules/**/*" },
+                ],
+              },
+              logger: {
+                infrastructure: "silent",
+              },
+            }),
+          ]),
     ],
+    resolve: {
+      symlinks: true,
+      extensions: moduleFileExtensions.map((ext) => `.${ext}`),
+      alias: {
+        "@public": path.join(paths.appPath, "./public"),
+        "@pages": path.join(paths.appPath, "./src/pages"),
+      },
+      fallback: {
+        ...Object.keys(nodeLibs).reduce((memo, key) => {
+          if (nodeLibs[key]) {
+            memo[key] = nodeLibs[key];
+          } else {
+            memo[key] = false;
+          }
+          return memo;
+        }, {}),
+      },
+    },
   };
+
+  if (fs.existsSync(overWriteConfigPath)) {
+    
+    try {
+    } catch (error) {
+      console.log(chalk.bold.red("merger webpack config failed!"));
+      console.log(error);
+    }
+  }
+
+  return config;
 };

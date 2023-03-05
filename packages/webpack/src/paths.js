@@ -1,6 +1,6 @@
 import path from "node:path";
 import fs from "node:fs";
-const moduleFileExtensions = [
+export const moduleFileExtensions = [
   "web.mjs",
   "mjs",
   "web.js",
@@ -27,8 +27,15 @@ const resolveModule = (resolveFn, filePath) => {
 };
 export default {
   appSrc: resolveApp("src"),
+  appPath: resolveApp("."),
   publicUrlOrPath: "/",
   appIndexJs: resolveModule(resolveApp, "src/index"),
   appPublic: resolveApp("public"),
   appHtml: resolveApp("public/index.html"),
+  appNodeModules: resolveApp("node_modules"),
+  appTsConfig: resolveApp("tsconfig.json"),
+  appJsConfig: resolveApp("jsconfig.json"),
+  appWebpackCache: resolveApp("node_modules/.cache"),
+  appTsBuildInfoFile: resolveApp("node_modules/.cache/tsconfig.tsbuildinfo"),
+  overWriteFile: resolveApp("lf.config.ts"),
 };
