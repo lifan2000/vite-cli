@@ -6,8 +6,8 @@ cli
   .command("dev", "start dev server")
   .option("--host [host]", `[string] specify hostname`)
   .option("--port <port>", `[number] specify port`)
-  .option("--config <config>", "webpack config filename")
-
+  .option("--config <string>", "Custom webpack configuration filename")
+  .option("--analyzer <boolean>", "Performance analysis of production environment")
   .action(async (options) => {
     try {
       const { createServer } = await import("./server.js");

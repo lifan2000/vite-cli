@@ -1,34 +1,34 @@
-import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import path from "node:path";
 import fs from "node:fs";
-import chalk from "chalk";
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
+import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import TerserPlugin from "terser-webpack-plugin";
 import CopyPlugin from "copy-webpack-plugin";
 import nodeLibs from "node-libs-browser";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import dayjs from "dayjs";
 import WebpackBar from "webpackbar";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import dayjs from "dayjs";
+import chalk from "chalk";
+import { resolveModule } from "@lf/utils";
 import paths, { resolveApp, moduleFileExtensions } from "./paths.js";
 import jsRules from "./jsConfig.js";
 import cssRules from "./cssConfig.js";
 import fileRules from "./fileCong.js";
 
-const isDev = process.env.NODE_ENV === "development";
 const __filename = fileURLToPath(import.meta.url);
-const nodeModulesRequire = createRequire(paths.appNodeModules);
 
 export default (params = {}) => {
   const { outDir = "build", esBuild = true, config: configFileName } = params;
-
+  const isDev = process.env.NODE_ENV === "development";
   const overWriteConfigPath = configFileName
     ? resolveApp(configFileName)
     : paths.overWriteFile;
-
   let _terserPluginOptions = {
     minify: esBuild ? TerserPlugin.esbuildMinify : TerserPlugin.terserMinify,
     terserOptions: !esBuild
@@ -52,7 +52,6 @@ export default (params = {}) => {
         }
       : {},
   };
-
   const outPutPath = resolveApp(outDir);
   const config = {
     target: ["browserslist"],
@@ -134,17 +133,12 @@ export default (params = {}) => {
             }),
           ]
         : [
-            //ts类型检查,待商榷:生产模式不打开?
             new ForkTsCheckerWebpackPlugin({
-              async: isDev,
               typescript: {
-                typescriptPath: nodeModulesRequire("typescript"),
+                typescriptPath: resolveModule("typescript"),
                 configOverwrite: {
                   compilerOptions: {
                     sourceMap: true,
-                    skipLibCheck: true,
-                    inlineSourceMap: false,
-                    declarationMap: false,
                     noEmit: true,
                     incremental: true,
                     tsBuildInfoFile: paths.appTsBuildInfoFile,
@@ -168,9 +162,6 @@ export default (params = {}) => {
                   { file: "**/src/setupTests.*" },
                   { file: "**/node_modules/**/*" },
                 ],
-              },
-              logger: {
-                infrastructure: "silent",
               },
             }),
           ]),
@@ -201,6 +192,10 @@ export default (params = {}) => {
       console.log(chalk.bold.red("merger webpack config failed!"));
       console.log(error);
     }
+  }
+
+  if (!isDev) {
+    config.plugins.push(new BundleAnalyzerPlugin());
   }
 
   return config;

@@ -1,7 +1,8 @@
 import path from "node:path";
 import loaderUtils from "loader-utils";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import sass from "sass";
+import postcssPresetEnv from "postcss-preset-env"
+import { resolveModule } from "@lf/utils";
 import paths from "./paths.js";
 
 const cssRegex = /\.css$/;
@@ -29,36 +30,29 @@ const getCSSModuleLocalIdent = (context, _, localName, options) => {
 };
 
 const getCssLoaders = (cssOptions) => {
-  const isDev = process.env.NODE_ENV === "development";
-  // let _loader = "style-loader";
-  // if (isDev) {
-  //   _loader = {
-  //     loader: MiniCssExtractPlugin.loader,
-  //   };
-  // }
   const loaders = [
-    "style-loader",
+    resolveModule("style-loader"),
     {
-      loader: "css-loader",
+      loader: resolveModule("css-loader"),
       options: cssOptions,
     },
     {
-      loader: "postcss-loader",
+      loader: resolveModule("postcss-loader"),
       options: {
         postcssOptions: {
           ident: "postcss",
           plugins: [
-            "postcss-flexbugs-fixes",
+            resolveModule("postcss-flexbugs-fixes"), //修复flex的bug
             [
-              "postcss-preset-env",
+              "postcss-preset-env",//css 语法降级, 与样式前缀，
               {
                 autoprefixer: {
                   flexbox: "no-2009",
                 },
-                stage: 3,
+                stage: 3,//根据browserslist的浏览器版本确定 是否降级语法
               },
             ],
-            "postcss-normalize",
+            "postcss-normalize", //要在项目里 @import "normalize.css @import "sanitize.css";才有用
           ],
         },
         sourceMap: true,

@@ -1,0 +1,12 @@
+/* @import "normalize.css";
+@import "sanitize.css"; */
+.color {
+  color: lch(53 105 40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 0px;
+}
+.input::placeholder {
+  color: gray;
+}
