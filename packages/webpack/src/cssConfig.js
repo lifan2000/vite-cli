@@ -2,7 +2,7 @@ import path from "node:path";
 import loaderUtils from "loader-utils";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import sass from "sass";
-import paths from "./paths";
+import paths from "./paths.js";
 
 const cssRegex = /\.css$/;
 const sassRegex = /\.(scss|sass)$/;

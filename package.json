@@ -16,5 +16,11 @@
   "homepage": "https://github.com/lifan2000/vite-cli#readme",
   "devDependencies": {
     "cac": "^6.7.14"
+  },
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "dayjs": "^1.11.7",
+    "loader-utils": "^3.2.1",
+    "sass": "^1.58.3"
   }
 }

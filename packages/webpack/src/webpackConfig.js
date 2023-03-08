@@ -1,13 +1,17 @@
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import path from "node:path";
 import fs from "node:fs";
-import chalk from "@lf/utils";
+import chalk from "chalk";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import TerserPlugin from "terser-webpack-plugin";
+import CopyPlugin from "copy-webpack-plugin";
+import nodeLibs from "node-libs-browser";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import WebpackBar from "webpack";
+import dayjs from "dayjs";
+import WebpackBar from "webpackbar";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import paths, { resolveApp, moduleFileExtensions } from "./paths.js";
 import jsRules from "./jsConfig.js";
@@ -19,16 +23,14 @@ const __filename = fileURLToPath(import.meta.url);
 const nodeModulesRequire = createRequire(paths.appNodeModules);
 
 export default (params = {}) => {
-  const { outDir = "build", esBuild = true, configFile } = params;
+  const { outDir = "build", esBuild = true, config: configFileName } = params;
 
-  const overWriteConfigPath = configFile
-    ? resolveApp(configFile)
+  const overWriteConfigPath = configFileName
+    ? resolveApp(configFileName)
     : paths.overWriteFile;
 
-  let terserPluginOptions = {
-    minify: esBuild
-      ? terserPluginOptions.esbuildMinify
-      : terserPluginOptions.terserMinify,
+  let _terserPluginOptions = {
+    minify: esBuild ? TerserPlugin.esbuildMinify : TerserPlugin.terserMinify,
     terserOptions: !esBuild
       ? {
           parse: {
@@ -85,7 +87,7 @@ export default (params = {}) => {
     optimization: {
       minimize: !isDev,
       minimizer: [
-        new TerserPlugin(terserPluginOptions),
+        new TerserPlugin(_terserPluginOptions),
         new CssMinimizerPlugin(),
       ],
     },
@@ -117,6 +119,8 @@ export default (params = {}) => {
       }),
       new HtmlWebpackPlugin({
         template: paths.appHtml,
+        inject: "body",
+        buildTime: dayjs().format("YYYY-MM-DD HH:mm:ss"),
         minify: {
           removeComments: false,
         },
@@ -192,7 +196,6 @@ export default (params = {}) => {
   };
 
   if (fs.existsSync(overWriteConfigPath)) {
-    
     try {
     } catch (error) {
       console.log(chalk.bold.red("merger webpack config failed!"));

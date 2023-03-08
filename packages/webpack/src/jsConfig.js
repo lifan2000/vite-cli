@@ -1,4 +1,5 @@
-import paths from "./paths";
+import { resolveModule } from "@lf/utils";
+import paths from "./paths.js";
 export default [
   {
     test: /\.(j|t)sx?$/,
@@ -6,7 +7,7 @@ export default [
     exclude: /node_modules/,
     use: [
       {
-        loader: require.resolve("babel-loader"),
+        loader: resolveModule("babel-loader"),
         options: {
           babelrc: false,
           presets: [
