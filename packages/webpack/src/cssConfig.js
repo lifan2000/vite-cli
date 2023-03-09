@@ -1,5 +1,6 @@
 import path from "node:path";
 import loaderUtils from "loader-utils";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import sass from "sass";
 import { resolveModule } from "@lf/utils";
 import paths from "./paths.js";
@@ -29,9 +30,16 @@ const getCSSModuleLocalIdent = (context, _, localName, options) => {
 };
 
 const getCssLoaders = (cssOptions) => {
+  const isDev = process.env.NODE_ENV === "development";
   const loaders = [
-    // 将 JS 字符串生成为 style 节点
-    resolveModule("style-loader"),
+    !isDev
+      ? {
+          loader: MiniCssExtractPlugin.loader, //生成单独的css 文件,webpack的plugins也有MiniCssExtractPlugin,目前不知道起作用的条件
+          options: paths.publicUrlOrPath.startsWith(".")
+            ? { publicPath: "../../" }
+            : {},
+        }
+      : resolveModule("style-loader"), // 将 JS 字符串生成为 style 节点
     {
       // 将 CSS 转化成 CommonJS 模块
       loader: resolveModule("css-loader"),

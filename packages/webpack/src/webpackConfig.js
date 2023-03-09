@@ -23,7 +23,13 @@ import fileRules from "./fileCong.js";
 const __filename = fileURLToPath(import.meta.url);
 
 export default (params = {}) => {
-  const { outDir = "build", esBuild = true, config: configFileName } = params;
+  const {
+    outDir = "build",
+    esBuild = true,
+    config: configFileName,
+    analyzer = false,
+  } = params;
+
   const isDev = process.env.NODE_ENV === "development";
   const overWriteConfigPath = configFileName
     ? resolveApp(configFileName)
@@ -193,7 +199,7 @@ export default (params = {}) => {
     }
   }
 
-  if (!isDev) {
+  if (!isDev && analyzer) {
     config.plugins.push(new BundleAnalyzerPlugin());
   }
 

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "lfWebpack dev --port=32003 "
+    "start": "lfWebpack dev --port=32003 ",
+    "build": "lfWebpack build"
   },
   "keywords": [],
   "author": "",
