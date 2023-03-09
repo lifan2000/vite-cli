@@ -15,7 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["node_modules/@types", "./src/types"],
+    "baseUrl": "./",
+    "typeRoots": ["node_modules/@types", "./types/"],
     "paths": {
       "@app/*": ["./src/app/*"],
       "@common/*": ["./src/common/*"],
