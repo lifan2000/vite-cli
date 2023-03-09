@@ -1,17 +1,9 @@
 import React, { useMemo } from "react";
-import "./app.css";
+import "./app.global.scss";
 interface IndexProps {
   name: string;
 }
 const Index: React.FC<IndexProps> = ({ name }) => {
-  return useMemo(
-    () => (
-      <div className="color">
-        {name}
-        <input type="text" className="input" />
-      </div>
-    ),
-    []
-  );
+  return useMemo(() => <div className="color">{name}</div>, []);
 };
 export default Index;

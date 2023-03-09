@@ -1,7 +1,6 @@
 import path from "node:path";
 import loaderUtils from "loader-utils";
 import sass from "sass";
-import postcssPresetEnv from "postcss-preset-env"
 import { resolveModule } from "@lf/utils";
 import paths from "./paths.js";
 
@@ -31,8 +30,10 @@ const getCSSModuleLocalIdent = (context, _, localName, options) => {
 
 const getCssLoaders = (cssOptions) => {
   const loaders = [
+    // 将 JS 字符串生成为 style 节点
     resolveModule("style-loader"),
     {
+      // 将 CSS 转化成 CommonJS 模块
       loader: resolveModule("css-loader"),
       options: cssOptions,
     },
@@ -44,12 +45,11 @@ const getCssLoaders = (cssOptions) => {
           plugins: [
             resolveModule("postcss-flexbugs-fixes"), //修复flex的bug
             [
-              "postcss-preset-env",//css 语法降级, 与样式前缀，
+              "postcss-preset-env", //css 语法降级, 与样式前缀，
               {
                 autoprefixer: {
                   flexbox: "no-2009",
                 },
-                stage: 3,//根据browserslist的浏览器版本确定 是否降级语法
               },
             ],
             "postcss-normalize", //要在项目里 @import "normalize.css @import "sanitize.css";才有用
@@ -64,14 +64,15 @@ const getCssLoaders = (cssOptions) => {
 
 const scssLoaders = [
   {
-    loader: "resolve-url-loader",
+    loader: resolveModule("resolve-url-loader"),
     options: {
       sourceMap: true,
       root: paths.appSrc,
     },
   },
   {
-    loader: "sass-loader",
+    // 将 Sass 编译成 CSS
+    loader: resolveModule("sass-loader"),
     options: {
       sourceMap: true,
       implementation: sass,
@@ -86,7 +87,7 @@ export default [
       importLoaders: 1, //在 css-loader 之前有多少 loader
       sourceMap: true,
       modules: {
-        mode: "icss",
+        mode: "icss", //css 不开启 css module
       },
     }),
     sideEffects: true, //tree shaking
