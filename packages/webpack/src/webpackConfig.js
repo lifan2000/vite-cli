@@ -34,6 +34,7 @@ export default (params = {}) => {
   const overWriteConfigPath = configFileName
     ? resolveApp(configFileName)
     : paths.overWriteFile;
+    
   let _terserPluginOptions = {
     minify: esBuild ? TerserPlugin.esbuildMinify : TerserPlugin.terserMinify,
     terserOptions: !esBuild
@@ -99,7 +100,7 @@ export default (params = {}) => {
       strictExportPresence: true,
       rules: [
         {
-          oneOf: [...jsRules, ...cssRules, ...fileRules],
+          oneOf: [...jsRules, ...cssRules(), ...fileRules],
         },
       ],
     },

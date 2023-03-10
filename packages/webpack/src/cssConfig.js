@@ -33,12 +33,7 @@ const getCssLoaders = (cssOptions) => {
   const isDev = process.env.NODE_ENV === "development";
   const loaders = [
     !isDev
-      ? {
-          loader: MiniCssExtractPlugin.loader, //生成单独的css 文件,webpack的plugins也有MiniCssExtractPlugin,目前不知道起作用的条件
-          options: paths.publicUrlOrPath.startsWith(".")
-            ? { publicPath: "../../" }
-            : {},
-        }
+      ? MiniCssExtractPlugin.loader //生成单独的css 文件,webpack的plugins也有MiniCssExtractPlugin, 两者都写才有效
       : resolveModule("style-loader"), // 将 JS 字符串生成为 style 节点
     {
       // 将 CSS 转化成 CommonJS 模块
@@ -88,45 +83,47 @@ const scssLoaders = [
   },
 ];
 
-export default [
-  {
-    test: cssRegex,
-    use: getCssLoaders({
-      importLoaders: 1, //在 css-loader 之前有多少 loader
-      sourceMap: true,
-      modules: {
-        mode: "icss", //css 不开启 css module
-      },
-    }),
-    sideEffects: true, //tree shaking
-  },
-  {
-    test: sassRegex,
-    exclude: /node_modules|\.global\.(scss|sass)$/,
-    use: [
-      ...getCssLoaders({
-        importLoaders: 3,
+export default () => {
+  return [
+    {
+      test: cssRegex,
+      use: getCssLoaders({
+        importLoaders: 1, //在 css-loader 之前有多少 loader
         sourceMap: true,
         modules: {
-          mode: "local",
-          getLocalIdent: getCSSModuleLocalIdent,
+          mode: "icss", //css 不开启 css module
         },
       }),
-      ...scssLoaders,
-    ],
-  },
-  {
-    test: sassGlobalRegex,
-    use: [
-      ...getCssLoaders({
-        importLoaders: 3,
-        sourceMap: true,
-        modules: {
-          mode: "icss",
-        },
-      }),
-      ...scssLoaders,
-    ],
-    sideEffects: true,
-  },
-];
+      sideEffects: true, //tree shaking
+    },
+    {
+      test: sassRegex,
+      exclude: /node_modules|\.global\.(scss|sass)$/,
+      use: [
+        ...getCssLoaders({
+          importLoaders: 3,
+          sourceMap: true,
+          modules: {
+            mode: "local",
+            getLocalIdent: getCSSModuleLocalIdent,
+          },
+        }),
+        ...scssLoaders,
+      ],
+    },
+    {
+      test: sassGlobalRegex,
+      use: [
+        ...getCssLoaders({
+          importLoaders: 3,
+          sourceMap: true,
+          modules: {
+            mode: "icss",
+          },
+        }),
+        ...scssLoaders,
+      ],
+      sideEffects: true,
+    },
+  ];
+};
