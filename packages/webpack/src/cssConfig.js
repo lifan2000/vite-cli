@@ -53,6 +53,13 @@ const getCssLoaders = (cssOptions) => {
                 autoprefixer: {
                   flexbox: "no-2009",
                 },
+                // Stage 0: Aspirational - 只是一个早期草案，极其不稳定
+                // Stage 1: Experimental - 仍然极其不稳定，但是提议已被W3C公认
+                // Stage 2: Allowable - 虽然还是不稳定，但已经可以使用了(default)
+                // Stage 3: Embraced - 比较稳定，可能将来会发生一些小的变化，它即将成为最终的标准
+                // Stage 4: Standardized - 所有主流浏览器都应该支持的W3C标准
+                stage: 2,
+                preserve: isDev,//开发环境保留新语法。生产环境删除新语法，保留兼容后的语法
               },
             ],
             "postcss-normalize", //要在项目里 @import "normalize.css @import "sanitize.css";才有用
