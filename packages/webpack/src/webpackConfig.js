@@ -14,6 +14,7 @@ import nodeLibs from "node-libs-browser";
 import WebpackBar from "webpackbar";
 import dayjs from "dayjs";
 import chalk from "chalk";
+import { loadModule } from "@lf/utils";
 import { resolveModule } from "./utils.js";
 import paths, { resolveApp, moduleFileExtensions } from "./paths.js";
 import jsRules from "./jsConfig.js";
@@ -34,7 +35,7 @@ export default (params = {}) => {
   const overWriteConfigPath = configFileName
     ? resolveApp(configFileName)
     : paths.overWriteFile;
-    
+
   let _terserPluginOptions = {
     minify: esBuild ? TerserPlugin.esbuildMinify : TerserPlugin.terserMinify,
     terserOptions: !esBuild
@@ -59,7 +60,7 @@ export default (params = {}) => {
       : {},
   };
   const outPutPath = resolveApp(outDir);
-  const config = {
+  let config = {
     target: ["browserslist"],
     mode: process.env.NODE_ENV || "development",
     bail: !isDev, //出错时中止打包，开发时在终端显示错误信息
@@ -177,7 +178,6 @@ export default (params = {}) => {
       extensions: moduleFileExtensions.map((ext) => `.${ext}`),
       alias: {
         "@public": path.join(paths.appPath, "./public"),
-        "@pages": path.join(paths.appPath, "./src/pages"),
       },
       fallback: {
         ...Object.keys(nodeLibs).reduce((memo, key) => {
@@ -194,6 +194,10 @@ export default (params = {}) => {
 
   if (fs.existsSync(overWriteConfigPath)) {
     try {
+      const { overwriteWebpack } = loadModule(overWriteConfigPath);
+      if (overwriteWebpack) {
+        config = overwriteWebpack(config);
+      }
     } catch (error) {
       console.log(chalk.bold.red("merger webpack config failed!"));
       console.log(error);

@@ -12,25 +12,36 @@ export default [
           babelrc: false,
           presets: [
             [
-              "@babel/preset-env",
+              resolveModule("@babel/preset-env"),
               {
                 targets: { browsers: ["chrome >= 47"] },
                 useBuiltIns: "usage",
                 corejs: 3,
               },
             ],
-            "@babel/preset-typescript",
-            "@babel/preset-react",
+            resolveModule("@babel/preset-typescript"),
+            resolveModule("@babel/preset-react"),
           ],
           plugins: [
-            ["@babel/plugin-proposal-decorators", { legacy: true }],
-            ["@babel/plugin-proposal-class-properties", { loose: true }],
-            ["@babel/plugin-proposal-private-methods", { loose: true }],
             [
-              "@babel/plugin-proposal-private-property-in-object",
+              resolveModule("@babel/plugin-proposal-decorators"),
+              { legacy: true },
+            ],
+            [
+              resolveModule("@babel/plugin-proposal-class-properties"),
               { loose: true },
             ],
-            "@babel/plugin-syntax-dynamic-import",
+            [
+              resolveModule("@babel/plugin-proposal-private-methods"),
+              { loose: true },
+            ],
+            [
+              resolveModule(
+                "@babel/plugin-proposal-private-property-in-object"
+              ),
+              { loose: true },
+            ],
+            resolveModule("@babel/plugin-syntax-dynamic-import"),
           ],
         },
       },

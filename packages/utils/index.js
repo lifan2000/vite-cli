@@ -14,7 +14,7 @@ const createRequire =
     return mod.exports;
   };
 
-export function loadModule(request, context) {
+export function loadModule(request, context = process.cwd()) {
   try {
     return createRequire(context)(request);
   } catch (e) {
