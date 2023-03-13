@@ -1,5 +1,5 @@
 import { cac } from "cac";
-
+import chalk from "chalk";
 const cli = cac("lfCli");
 
 cli
@@ -8,9 +8,11 @@ cli
   .option("--port <port>", `[number] specify port`)
   .action(async (options) => {
     try {
-      const { createServer } = await import("./server");
+      const { createServer } = await import("./server.js");
       createServer(options);
     } catch (error) {
+      console.log(chalk.bold.red("start server err!"));
+      console.log(error);
       process.exit(1);
     }
   });

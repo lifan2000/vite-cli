@@ -1,0 +1,11 @@
+.color {
+  color: lch(53 105 40);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 0px;
+  background: url("~@public/images/arrowDown.svg");
+}
+.input::placeholder {
+  color: gray;
+}

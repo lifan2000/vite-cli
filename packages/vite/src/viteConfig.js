@@ -100,7 +100,7 @@ export default defineConfig(({ command }) => {
   }
   return {
     server: {
-      port: 32222,
+      port: 32003,
       strictPort: false,
     },
     plugins,
