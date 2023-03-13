@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 importers:
 
@@ -27,7 +27,6 @@ importers:
 
   example/webpackTemp:
     specifiers:
-      '@lf/utils': workspace:^1.0.0
       '@lf/webpack': workspace:^1.0.0
       '@types/react-dom': ^18.0.11
       csstools: ^0.1.5
@@ -36,7 +35,6 @@ importers:
       remove: ^0.1.5
       typescript: ^4.9.5
     dependencies:
-      '@lf/utils': link:../../packages/utils
       '@lf/webpack': link:../../packages/webpack
       csstools: registry.npmmirror.com/csstools/0.1.5
       react: registry.npmmirror.com/react/18.2.0
@@ -47,12 +45,7 @@ importers:
       '@types/react-dom': registry.npmmirror.com/@types/react-dom/18.0.11
 
   packages/utils:
-    specifiers:
-      '@example/vite': workspace:^1.0.0
-      '@example/webpack': workspace:^1.0.0
-    dependencies:
-      '@example/vite': link:../../example/vite
-      '@example/webpack': link:../../example/webpackTemp
+    specifiers: {}
 
   packages/vite:
     specifiers:
@@ -117,10 +110,10 @@ importers:
       '@csstools/normalize.css': registry.npmmirror.com/@csstools/normalize.css/12.0.0
       '@lf/utils': link:../utils
       '@svgr/webpack': registry.npmmirror.com/@svgr/webpack/6.5.1
-      babel-loader: registry.npmmirror.com/babel-loader/9.1.2_838179c1027e53d7ee8199eddddc0583
+      babel-loader: registry.npmmirror.com/babel-loader/9.1.2_qoaxtqicpzj5p3ubthw53xafqm
       copy-webpack-plugin: registry.npmmirror.com/copy-webpack-plugin/11.0.0_webpack@5.75.0
       css-loader: registry.npmmirror.com/css-loader/6.7.3_webpack@5.75.0
-      css-minimizer-webpack-plugin: registry.npmmirror.com/css-minimizer-webpack-plugin/4.2.2_esbuild@0.17.11+webpack@5.75.0
+      css-minimizer-webpack-plugin: registry.npmmirror.com/css-minimizer-webpack-plugin/4.2.2_uq5mi6gw7pk55tcrj3rsxehkd4
       esbuild: registry.npmmirror.com/esbuild/0.17.11
       file-loader: registry.npmmirror.com/file-loader/6.2.0_webpack@5.75.0
       fork-ts-checker-webpack-plugin: registry.npmmirror.com/fork-ts-checker-webpack-plugin/7.3.0_webpack@5.75.0
@@ -130,14 +123,14 @@ importers:
       node-libs-browser: registry.npmmirror.com/node-libs-browser/2.2.1
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-flexbugs-fixes: registry.npmmirror.com/postcss-flexbugs-fixes/5.0.2_postcss@8.4.21
-      postcss-loader: registry.npmmirror.com/postcss-loader/7.0.2_postcss@8.4.21+webpack@5.75.0
+      postcss-loader: registry.npmmirror.com/postcss-loader/7.0.2_6jdsrmfenkuhhw3gx4zvjlznce
       postcss-normalize: registry.npmmirror.com/postcss-normalize/10.0.1_postcss@8.4.21
       postcss-preset-env: registry.npmmirror.com/postcss-preset-env/8.0.1_postcss@8.4.21
       resolve-url-loader: registry.npmmirror.com/resolve-url-loader/5.0.0
       sanitize.css: registry.npmmirror.com/sanitize.css/13.0.0
-      sass-loader: registry.npmmirror.com/sass-loader/13.2.0_sass@1.58.3+webpack@5.75.0
+      sass-loader: registry.npmmirror.com/sass-loader/13.2.0_webpack@5.75.0
       style-loader: registry.npmmirror.com/style-loader/3.3.1_webpack@5.75.0
-      terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/5.3.6_esbuild@0.17.11+webpack@5.75.0
+      terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/5.3.6_uq5mi6gw7pk55tcrj3rsxehkd4
       webpack: registry.npmmirror.com/webpack/5.75.0_esbuild@0.17.11
       webpack-bundle-analyzer: registry.npmmirror.com/webpack-bundle-analyzer/4.8.0
       webpack-dev-server: registry.npmmirror.com/webpack-dev-server/4.11.1_webpack@5.75.0
@@ -513,6 +506,8 @@ packages:
     version: 7.21.2
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': registry.npmmirror.com/@babel/types/7.21.2
     dev: false
 
   registry.npmmirror.com/@babel/plugin-bugfix-safari-id-destructuring-collision-in-function-expression/7.18.6_@babel+core@7.21.0:
@@ -1775,7 +1770,7 @@ packages:
       to-fast-properties: registry.npmmirror.com/to-fast-properties/2.0.0
     dev: false
 
-  registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2:
+  registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_ppok7cytzjc65mcyxmtit3wdyi:
     resolution: {integrity: sha512-SAAi5DpgJJWkfTvWSaqkgyIsTawa83hMwKrktkj6ra2h+q6ZN57vOGZ6ySHq6RSo+CbP64fA3aPChPBRDDUgtw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/cascade-layer-name-parser/-/cascade-layer-name-parser-1.0.1.tgz}
     id: registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1
     name: '@csstools/cascade-layer-name-parser'
@@ -1785,7 +1780,7 @@ packages:
       '@csstools/css-parser-algorithms': ^2.0.0
       '@csstools/css-tokenizer': ^2.0.0
     dependencies:
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
     dev: false
 
@@ -1796,7 +1791,7 @@ packages:
     engines: {node: ^14 || ^16 || >=18}
     dev: false
 
-  registry.npmmirror.com/@csstools/css-calc/1.0.0_7bdcaf8b13ca45eeb058bb2689eec3c2:
+  registry.npmmirror.com/@csstools/css-calc/1.0.0_ppok7cytzjc65mcyxmtit3wdyi:
     resolution: {integrity: sha512-Xw0b/Jr+vLGGYD8cxsGWPaY5n1GtVC6G4tcga+eZPXZzRjjZHorPwW739UgtXzL2Da1RLxNE73c0r/KvmizPsw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/css-calc/-/css-calc-1.0.0.tgz}
     id: registry.npmmirror.com/@csstools/css-calc/1.0.0
     name: '@csstools/css-calc'
@@ -1806,11 +1801,11 @@ packages:
       '@csstools/css-parser-algorithms': ^2.0.1
       '@csstools/css-tokenizer': ^2.0.1
     dependencies:
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
     dev: false
 
-  registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0:
+  registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm:
     resolution: {integrity: sha512-B9/8PmOtU6nBiibJg0glnNktQDZ3rZnGn/7UmDfrm2vMtrdlXO3p7ErE95N0up80IRk9YEtB5jyj/TmQ1WH3dw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.0.1.tgz}
     id: registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1
     name: '@csstools/css-parser-algorithms'
@@ -1829,7 +1824,7 @@ packages:
     engines: {node: ^14 || ^16 || >=18}
     dev: false
 
-  registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2:
+  registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1_ppok7cytzjc65mcyxmtit3wdyi:
     resolution: {integrity: sha512-X2/OuzEbjaxhzm97UJ+95GrMeT29d1Ib+Pu+paGLuRWZnWRK9sI9r3ikmKXPWGA1C4y4JEdBEFpp9jEqCvLeRA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/media-query-list-parser/-/media-query-list-parser-2.0.1.tgz}
     id: registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1
     name: '@csstools/media-query-list-parser'
@@ -1839,7 +1834,7 @@ packages:
       '@csstools/css-parser-algorithms': ^2.0.0
       '@csstools/css-tokenizer': ^2.0.0
     dependencies:
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
     dev: false
 
@@ -1858,7 +1853,7 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_b0132eb4833290a175e2a58939fd6432
+      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_wajs5nedgkikc5pcuwett7legi
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser/6.0.11
     dev: false
@@ -1928,7 +1923,7 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_b0132eb4833290a175e2a58939fd6432
+      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_wajs5nedgkikc5pcuwett7legi
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser/6.0.11
     dev: false
@@ -1980,9 +1975,9 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
-      '@csstools/media-query-list-parser': registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2
+      '@csstools/media-query-list-parser': registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1_ppok7cytzjc65mcyxmtit3wdyi
       postcss: registry.npmmirror.com/postcss/8.4.21
     dev: false
 
@@ -2062,8 +2057,8 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/css-calc': registry.npmmirror.com/@csstools/css-calc/1.0.0_7bdcaf8b13ca45eeb058bb2689eec3c2
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/css-calc': registry.npmmirror.com/@csstools/css-calc/1.0.0_ppok7cytzjc65mcyxmtit3wdyi
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
       postcss: registry.npmmirror.com/postcss/8.4.21
     dev: false
@@ -2107,7 +2102,7 @@ packages:
       postcss: registry.npmmirror.com/postcss/8.4.21
     dev: false
 
-  registry.npmmirror.com/@csstools/selector-specificity/2.1.1_b0132eb4833290a175e2a58939fd6432:
+  registry.npmmirror.com/@csstools/selector-specificity/2.1.1_wajs5nedgkikc5pcuwett7legi:
     resolution: {integrity: sha512-jwx+WCqszn53YHOfvFMJJRd/B2GqkCBt+1MJSG6o5/s8+ytHMvDZXsJgUEWLk12UnLd7HYKac4BYU5i/Ron1Cw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@csstools/selector-specificity/-/selector-specificity-2.1.1.tgz}
     id: registry.npmmirror.com/@csstools/selector-specificity/2.1.1
     name: '@csstools/selector-specificity'
@@ -3295,7 +3290,7 @@ packages:
       postcss-value-parser: registry.npmmirror.com/postcss-value-parser/4.2.0
     dev: false
 
-  registry.npmmirror.com/babel-loader/9.1.2_838179c1027e53d7ee8199eddddc0583:
+  registry.npmmirror.com/babel-loader/9.1.2_qoaxtqicpzj5p3ubthw53xafqm:
     resolution: {integrity: sha512-mN14niXW43tddohGl8HPu5yfQq70iUThvFL/4QzESA7GcZoC0eVOhvWdQ8+3UlSjaDE9MVtsW9mxDY07W7VpVA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/babel-loader/-/babel-loader-9.1.2.tgz}
     id: registry.npmmirror.com/babel-loader/9.1.2
     name: babel-loader
@@ -3417,6 +3412,8 @@ packages:
       raw-body: registry.npmmirror.com/raw-body/2.5.1
       type-is: registry.npmmirror.com/type-is/1.6.18
       unpipe: registry.npmmirror.com/unpipe/1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/bonjour-service/1.1.0:
@@ -3825,6 +3822,8 @@ packages:
       on-headers: registry.npmmirror.com/on-headers/1.0.2
       safe-buffer: registry.npmmirror.com/safe-buffer/5.1.2
       vary: registry.npmmirror.com/vary/1.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/concat-map/0.0.1:
@@ -4035,7 +4034,7 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_b0132eb4833290a175e2a58939fd6432
+      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_wajs5nedgkikc5pcuwett7legi
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser/6.0.11
       postcss-value-parser: registry.npmmirror.com/postcss-value-parser/4.2.0
@@ -4061,7 +4060,7 @@ packages:
       webpack: registry.npmmirror.com/webpack/5.75.0_esbuild@0.17.11
     dev: false
 
-  registry.npmmirror.com/css-minimizer-webpack-plugin/4.2.2_esbuild@0.17.11+webpack@5.75.0:
+  registry.npmmirror.com/css-minimizer-webpack-plugin/4.2.2_uq5mi6gw7pk55tcrj3rsxehkd4:
     resolution: {integrity: sha512-s3Of/4jKfw1Hj9CxEO1E5oXhQAxlayuHO2y/ML+C6I9sQ7FdzfEV6QgMLN3vI+qFsjJGIAFLKtQK7t8BOXAIyA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/css-minimizer-webpack-plugin/-/css-minimizer-webpack-plugin-4.2.2.tgz}
     id: registry.npmmirror.com/css-minimizer-webpack-plugin/4.2.2
     name: css-minimizer-webpack-plugin
@@ -4253,6 +4252,11 @@ packages:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/debug/-/debug-2.6.9.tgz}
     name: debug
     version: 2.6.9
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
     dependencies:
       ms: registry.npmmirror.com/ms/2.0.0
     dev: false
@@ -4689,6 +4693,8 @@ packages:
       type-is: registry.npmmirror.com/type-is/1.6.18
       utils-merge: registry.npmmirror.com/utils-merge/1.0.1
       vary: registry.npmmirror.com/vary/1.1.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/fast-deep-equal/3.1.3:
@@ -4769,6 +4775,8 @@ packages:
       parseurl: registry.npmmirror.com/parseurl/1.3.3
       statuses: registry.npmmirror.com/statuses/2.0.1
       unpipe: registry.npmmirror.com/unpipe/1.0.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/find-cache-dir/3.3.2:
@@ -6320,10 +6328,10 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/cascade-layer-name-parser': registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/cascade-layer-name-parser': registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_ppok7cytzjc65mcyxmtit3wdyi
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
-      '@csstools/media-query-list-parser': registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2
+      '@csstools/media-query-list-parser': registry.npmmirror.com/@csstools/media-query-list-parser/2.0.1_ppok7cytzjc65mcyxmtit3wdyi
       postcss: registry.npmmirror.com/postcss/8.4.21
     dev: false
 
@@ -6336,8 +6344,8 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/cascade-layer-name-parser': registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/cascade-layer-name-parser': registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_ppok7cytzjc65mcyxmtit3wdyi
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-value-parser: registry.npmmirror.com/postcss-value-parser/4.2.0
@@ -6352,8 +6360,8 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/cascade-layer-name-parser': registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_7bdcaf8b13ca45eeb058bb2689eec3c2
-      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_@csstools+css-tokenizer@2.1.0
+      '@csstools/cascade-layer-name-parser': registry.npmmirror.com/@csstools/cascade-layer-name-parser/1.0.1_ppok7cytzjc65mcyxmtit3wdyi
+      '@csstools/css-parser-algorithms': registry.npmmirror.com/@csstools/css-parser-algorithms/2.0.1_5vzy4lghjvuzkedkkk4tqwjftm
       '@csstools/css-tokenizer': registry.npmmirror.com/@csstools/css-tokenizer/2.1.0
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser/6.0.11
@@ -6533,7 +6541,7 @@ packages:
       postcss-value-parser: registry.npmmirror.com/postcss-value-parser/4.2.0
     dev: false
 
-  registry.npmmirror.com/postcss-loader/7.0.2_postcss@8.4.21+webpack@5.75.0:
+  registry.npmmirror.com/postcss-loader/7.0.2_6jdsrmfenkuhhw3gx4zvjlznce:
     resolution: {integrity: sha512-fUJzV/QH7NXUAqV8dWJ9Lg4aTkDCezpTS5HgJ2DvqznexTbSTxgi/dTECvTZ15BwKTtk8G/bqI/QTu2HPd3ZCg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/postcss-loader/-/postcss-loader-7.0.2.tgz}
     id: registry.npmmirror.com/postcss-loader/7.0.2
     name: postcss-loader
@@ -6723,7 +6731,7 @@ packages:
     peerDependencies:
       postcss: ^8.4
     dependencies:
-      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_b0132eb4833290a175e2a58939fd6432
+      '@csstools/selector-specificity': registry.npmmirror.com/@csstools/selector-specificity/2.1.1_wajs5nedgkikc5pcuwett7legi
       postcss: registry.npmmirror.com/postcss/8.4.21
       postcss-selector-parser: registry.npmmirror.com/postcss-selector-parser/6.0.11
     dev: false
@@ -7494,7 +7502,7 @@ packages:
     version: 13.0.0
     dev: false
 
-  registry.npmmirror.com/sass-loader/13.2.0_sass@1.58.3+webpack@5.75.0:
+  registry.npmmirror.com/sass-loader/13.2.0_webpack@5.75.0:
     resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sass-loader/-/sass-loader-13.2.0.tgz}
     id: registry.npmmirror.com/sass-loader/13.2.0
     name: sass-loader
@@ -7518,7 +7526,6 @@ packages:
     dependencies:
       klona: registry.npmmirror.com/klona/2.0.6
       neo-async: registry.npmmirror.com/neo-async/2.6.2
-      sass: registry.npmmirror.com/sass/1.58.3
       webpack: registry.npmmirror.com/webpack/5.75.0_esbuild@0.17.11
     dev: false
 
@@ -7616,6 +7623,8 @@ packages:
       on-finished: registry.npmmirror.com/on-finished/2.4.1
       range-parser: registry.npmmirror.com/range-parser/1.2.1
       statuses: registry.npmmirror.com/statuses/2.0.1
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/seq/0.3.5:
@@ -7648,6 +7657,8 @@ packages:
       http-errors: registry.npmmirror.com/http-errors/1.6.3
       mime-types: registry.npmmirror.com/mime-types/2.1.35
       parseurl: registry.npmmirror.com/parseurl/1.3.3
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/serve-static/1.15.0:
@@ -7660,6 +7671,8 @@ packages:
       escape-html: registry.npmmirror.com/escape-html/1.0.3
       parseurl: registry.npmmirror.com/parseurl/1.3.3
       send: registry.npmmirror.com/send/0.18.0
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   registry.npmmirror.com/setimmediate/1.0.5:
@@ -8019,7 +8032,7 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  registry.npmmirror.com/terser-webpack-plugin/5.3.6_esbuild@0.17.11+webpack@5.75.0:
+  registry.npmmirror.com/terser-webpack-plugin/5.3.6_uq5mi6gw7pk55tcrj3rsxehkd4:
     resolution: {integrity: sha512-kfLFk+PoLUQIbLmB1+PZDMRSZS99Mp+/MHqDNmMA6tOItzRt+Npe3E+fsMs5mfcM0wCtrrdU387UnV+vnSffXQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/terser-webpack-plugin/-/terser-webpack-plugin-5.3.6.tgz}
     id: registry.npmmirror.com/terser-webpack-plugin/5.3.6
     name: terser-webpack-plugin
@@ -8457,7 +8470,7 @@ packages:
       neo-async: registry.npmmirror.com/neo-async/2.6.2
       schema-utils: registry.npmmirror.com/schema-utils/3.1.1
       tapable: registry.npmmirror.com/tapable/2.2.1
-      terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/5.3.6_esbuild@0.17.11+webpack@5.75.0
+      terser-webpack-plugin: registry.npmmirror.com/terser-webpack-plugin/5.3.6_uq5mi6gw7pk55tcrj3rsxehkd4
       watchpack: registry.npmmirror.com/watchpack/2.4.0
       webpack-sources: registry.npmmirror.com/webpack-sources/3.2.3
     transitivePeerDependencies:

@@ -6,9 +6,5 @@
   "type": "module",
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@example/vite": "workspace:^1.0.0",
-    "@example/webpack": "workspace:^1.0.0"
-  }
+  "license": "ISC"
 }

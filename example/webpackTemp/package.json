@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lf/utils": "workspace:^1.0.0",
     "@lf/webpack": "workspace:^1.0.0",
     "csstools": "^0.1.5",
     "react": "^18.2.0",

@@ -22,7 +22,7 @@ export function loadModule(request, context) {
   }
 }
 
-export function resolveModule(path) {
-  const require = createRequire(import.meta.url);
+export function resolveModule(path, context = import.meta.url) {
+  const require = createRequire(context);
   return require.resolve(path);
 }

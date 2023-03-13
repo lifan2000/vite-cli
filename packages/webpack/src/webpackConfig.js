@@ -14,7 +14,7 @@ import nodeLibs from "node-libs-browser";
 import WebpackBar from "webpackbar";
 import dayjs from "dayjs";
 import chalk from "chalk";
-import { resolveModule } from "@lf/utils";
+import { resolveModule } from "./utils.js";
 import paths, { resolveApp, moduleFileExtensions } from "./paths.js";
 import jsRules from "./jsConfig.js";
 import cssRules from "./cssConfig.js";
