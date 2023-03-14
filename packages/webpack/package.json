@@ -1,6 +1,6 @@
 {
   "name": "lfwebpack",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "bin": {
     "lfWebpack": "bin/index.js"
   },
@@ -34,7 +34,7 @@
     "fork-ts-checker-webpack-plugin": "^7.3.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^5.5.0",
-    "lf-cli-utils": "workspace:^1.0.0",
+    "lf-cli-utils": "workspace:^1.0.1",
     "mini-css-extract-plugin": "^2.7.2",
     "node-libs-browser": "^2.2.1",
     "postcss": "^8.4.21",
