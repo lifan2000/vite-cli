@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lf/webpack": "workspace:^1.0.0",
     "csstools": "^0.1.5",
+    "lfwebpack": "workspace:^1.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remove": "^0.1.5",

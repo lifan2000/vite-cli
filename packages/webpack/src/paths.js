@@ -1,6 +1,6 @@
-import path from "node:path";
-import fs from "node:fs";
-export const moduleFileExtensions = [
+const fs = require("fs");
+const path = require("path");
+const moduleFileExtensions = [
   "web.mjs",
   "mjs",
   "web.js",
@@ -14,8 +14,7 @@ export const moduleFileExtensions = [
   "jsx",
 ];
 const appDirectory = fs.realpathSync(process.cwd());
-export const resolveApp = (relativePath) =>
-  path.resolve(appDirectory, relativePath);
+const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 const resolveModule = (resolveFn, filePath) => {
   const extension = moduleFileExtensions.find((extension) =>
     fs.existsSync(resolveFn(`${filePath}.${extension}`))
@@ -25,7 +24,8 @@ const resolveModule = (resolveFn, filePath) => {
   }
   return resolveFn(`${filePath}.js`);
 };
-export default {
+
+module.exports = {
   appSrc: resolveApp("src"),
   appPath: resolveApp("."),
   publicUrlOrPath: "/",
@@ -39,3 +39,6 @@ export default {
   appTsBuildInfoFile: resolveApp("node_modules/.cache/tsconfig.tsbuildinfo"),
   overWriteFile: resolveApp("lf.config.ts"),
 };
+
+module.exports.moduleFileExtensions = moduleFileExtensions;
+module.exports.resolveApp = resolveApp;

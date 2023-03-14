@@ -1,9 +1,9 @@
-import WebpackDevServer from "webpack-dev-server";
-import webpack from "webpack";
-import configFactory from "./webpackConfig.js";
+const WebpackDevServer = require("webpack-dev-server");
+const webpack = require("webpack");
+const configFactory = require("./webpackConfig.js");
 process.env.NODE_ENV = "development";
 
-export function createServer(params) {
+function createServer(params) {
   const webpackConfig = configFactory(params);
   const compiler = webpack(webpackConfig);
   const { host = "127.0.0.1", port = "30003" } = params;
@@ -29,3 +29,5 @@ export function createServer(params) {
     }
   });
 }
+
+module.exports.createServer = createServer;

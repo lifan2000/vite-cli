@@ -9,7 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lf/vite": "workspace:^1.0.0",
-    "@lf/utils": "workspace:^1.0.0"
+    "@lf/vite": "workspace:^1.0.0"
   }
 }

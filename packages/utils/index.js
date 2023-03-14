@@ -1,6 +1,5 @@
-import Module from "node:module";
-import path from "node:path";
-
+const Module = require("module");
+const path = require("path");
 const createRequire =
   Module.createRequire ||
   Module.createRequireFromPath ||
@@ -14,15 +13,10 @@ const createRequire =
     return mod.exports;
   };
 
-export function loadModule(request, context = process.cwd()) {
+module.exports = function loadModule(request, context = process.cwd()) {
   try {
     return createRequire(context)(request);
   } catch (e) {
     console.log("loadModule failed!", request);
   }
-}
-
-export function resolveModule(path, context = import.meta.url) {
-  const require = createRequire(context);
-  return require.resolve(path);
-}
+};

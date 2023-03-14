@@ -1,9 +1,10 @@
-import webpack from "webpack";
-import chalk from "chalk";
-import configFactory from "./webpackConfig.js";
+const webpack = require("webpack");
+const chalk = require("chalk");
+const configFactory = require("./webpackConfig.js");
+
 process.env.NODE_ENV = "production";
 
-export function build(params) {
+exports.build = function build(params) {
   const webpackConfig = configFactory(params);
   const compiler = webpack(webpackConfig);
   console.log(chalk.bold.green("lfWebpack build start..."));
@@ -16,4 +17,4 @@ export function build(params) {
       return;
     }
   });
-}
+};

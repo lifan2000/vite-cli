@@ -1,29 +1,26 @@
-import { fileURLToPath } from "node:url";
-import path from "node:path";
-import fs from "node:fs";
-import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
-import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
-import { WebpackManifestPlugin } from "webpack-manifest-plugin";
-import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
-import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import HtmlWebpackPlugin from "html-webpack-plugin";
-import TerserPlugin from "terser-webpack-plugin";
-import CopyPlugin from "copy-webpack-plugin";
-import nodeLibs from "node-libs-browser";
-import WebpackBar from "webpackbar";
-import dayjs from "dayjs";
-import chalk from "chalk";
-import { loadModule } from "@lf/utils";
-import { resolveModule } from "./utils.js";
-import paths, { resolveApp, moduleFileExtensions } from "./paths.js";
-import jsRules from "./jsConfig.js";
-import cssRules from "./cssConfig.js";
-import fileRules from "./fileCong.js";
-
-const __filename = fileURLToPath(import.meta.url);
-
-export default (params = {}) => {
+const path = require("path");
+const fs = require("fs");
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
+const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+const nodeLibs = require("node-libs-browser");
+const WebpackBar = require("webpackbar");
+const dayjs = require("dayjs");
+const chalk = require("chalk");
+const { merge } = require("webpack-merge");
+const { loadModule } = require("lf-cli-utils");
+const paths = require("./paths.js");
+const jsRules = require("./jsConfig.js");
+const cssRules = require("./cssConfig.js");
+const fileRules = require("./fileCong.js");
+const resolveModule = require.resolve;
+module.exports = (params = {}) => {
   const {
     outDir = "build",
     esBuild = true,
@@ -33,7 +30,7 @@ export default (params = {}) => {
 
   const isDev = process.env.NODE_ENV === "development";
   const overWriteConfigPath = configFileName
-    ? resolveApp(configFileName)
+    ? paths.resolveApp(configFileName)
     : paths.overWriteFile;
 
   let _terserPluginOptions = {
@@ -59,7 +56,7 @@ export default (params = {}) => {
         }
       : {},
   };
-  const outPutPath = resolveApp(outDir);
+  const outPutPath = paths.resolveApp(outDir);
   let config = {
     target: ["browserslist"],
     mode: process.env.NODE_ENV || "development",
@@ -175,7 +172,7 @@ export default (params = {}) => {
     ],
     resolve: {
       symlinks: true,
-      extensions: moduleFileExtensions.map((ext) => `.${ext}`),
+      extensions: paths.moduleFileExtensions.map((ext) => `.${ext}`),
       alias: {
         "@public": path.join(paths.appPath, "./public"),
       },
@@ -194,9 +191,9 @@ export default (params = {}) => {
 
   if (fs.existsSync(overWriteConfigPath)) {
     try {
-      const { overwriteWebpack } = loadModule(overWriteConfigPath);
-      if (overwriteWebpack) {
-        config = overwriteWebpack(config);
+      const overwriteConfig = loadModule(overWriteConfigPath);
+      if (overwriteConfig) {
+        config = merge(config, overwriteConfig);
       }
     } catch (error) {
       console.log(chalk.bold.red("merger webpack config failed!"));

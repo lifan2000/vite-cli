@@ -1,10 +1,9 @@
-import path from "node:path";
-import loaderUtils from "loader-utils";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import sass from "sass";
-import { resolveModule } from "./utils.js";
-import paths from "./paths.js";
-
+const path = require("path");
+const loaderUtils = require("loader-utils");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const sass = require("sass");
+const paths = require("./paths.js");
+const resolveModule = require.resolve;
 const cssRegex = /\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassGlobalRegex = /\.global\.(scss|sass)$/;
@@ -59,7 +58,7 @@ const getCssLoaders = (cssOptions) => {
                 // Stage 3: Embraced - 比较稳定，可能将来会发生一些小的变化，它即将成为最终的标准
                 // Stage 4: Standardized - 所有主流浏览器都应该支持的W3C标准
                 stage: 2,
-                preserve: isDev,//开发环境保留新语法。生产环境删除新语法，保留兼容后的语法
+                preserve: isDev, //开发环境保留新语法。生产环境删除新语法，保留兼容后的语法
               },
             ],
             "postcss-normalize", //要在项目里 @import "normalize.css @import "sanitize.css";才有用
@@ -90,7 +89,7 @@ const scssLoaders = [
   },
 ];
 
-export default () => {
+module.exports = () => {
   return [
     {
       test: cssRegex,

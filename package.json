@@ -4,7 +4,6 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm"
   },
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lifan2000/vite-cli.git"
@@ -18,7 +17,7 @@
     "cac": "^6.7.14"
   },
   "dependencies": {
-    "chalk": "^5.2.0",
+    "chalk": "^4.0.0",
     "dayjs": "^1.11.7",
     "loader-utils": "^3.2.1",
     "sass": "^1.58.3"

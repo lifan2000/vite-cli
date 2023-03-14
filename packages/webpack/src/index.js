@@ -1,6 +1,5 @@
-import { cac } from "cac";
-import chalk from "chalk";
-
+const { cac } = require("cac");
+const chalk = require("chalk");
 const cli = cac("lfCli");
 
 cli
