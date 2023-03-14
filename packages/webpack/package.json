@@ -1,7 +1,6 @@
 {
   "name": "lfwebpack",
-  "version": "1.0.1",
-  "type": "module",
+  "version": "1.0.4",
   "bin": {
     "lfWebpack": "bin/index.js"
   },
@@ -52,6 +51,7 @@
     "webpack-bundle-analyzer": "^4.8.0",
     "webpack-dev-server": "^4.11.1",
     "webpack-manifest-plugin": "^5.0.0",
+    "webpack-merge": "^5.8.0",
     "webpackbar": "^5.0.2"
   }
 }

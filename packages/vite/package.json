@@ -12,7 +12,6 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "@lf/utils": "workspace:^1.0.0",
     "@vitejs/plugin-legacy": "^2.2.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "vite": "^3.1.6",

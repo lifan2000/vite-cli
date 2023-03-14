@@ -1,6 +1,6 @@
-import { resolveModule } from "./utils.js";
-import paths from "./paths.js";
-export default [
+const paths = require("./paths.js");
+const resolveModule = require.resolve;
+module.exports = [
   {
     test: /\.(j|t)sx?$/,
     include: paths.appSrc,

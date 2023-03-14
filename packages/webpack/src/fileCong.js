@@ -1,6 +1,6 @@
 //静态文件loader
 const imageInlineSizeLimit = 10000;
-export default [
+module.exports = [
   {
     test: [/\.avif$/],
     type: "asset",
