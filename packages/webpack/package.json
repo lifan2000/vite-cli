@@ -1,6 +1,6 @@
 {
-  "name": "lfwebpack",
-  "version": "1.0.5",
+  "name": "@lfff/lfwebpack",
+  "version": "1.0.6",
   "bin": {
     "lfWebpack": "bin/index.js"
   },
