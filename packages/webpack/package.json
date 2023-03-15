@@ -1,6 +1,6 @@
 {
   "name": "@lfff/lfwebpack",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "bin": {
     "lfWebpack": "bin/index.js"
   },
@@ -23,6 +23,7 @@
     "@babel/preset-typescript": "^7.21.0",
     "@babel/runtime": "^7.21.0",
     "@csstools/normalize.css": "^12.0.0",
+    "@lfff/lf-cli-utils": "workspace:^1.0.1",
     "@svgr/webpack": "^6.5.1",
     "babel-loader": "^9.1.2",
     "cac": "^6.7.14",
@@ -38,7 +39,6 @@
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^5.5.0",
     "loader-utils": "^3.2.1",
-    "lf-cli-utils": "workspace:^1.0.1",
     "mini-css-extract-plugin": "^2.7.2",
     "node-libs-browser": "^2.2.1",
     "postcss": "^8.4.21",
