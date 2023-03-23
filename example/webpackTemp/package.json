@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "lfWebpack dev --port=32003 ",
-    "build": "lfWebpack build"
+    "build": "lfWebpack build --dropConsole=false"
   },
   "keywords": [],
   "author": "",

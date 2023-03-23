@@ -7,10 +7,6 @@ cli
   .option("--host [host]", `[string] specify hostname`)
   .option("--port <port>", `[number] specify port`)
   .option("--config <string>", "Custom webpack configuration filename")
-  .option(
-    "--analyzer <boolean>",
-    "Performance analysis of production environment"
-  )
   .action(async (options) => {
     try {
       const { createServer } = await import("./server.js");
@@ -26,8 +22,12 @@ cli
   .command("build", "build for production")
   .option("--outDir <dir>", `[string] output directory (default: build)`)
   .option("--analyzer <boolean>", `bundle analyzer`)
+  .option("--dropConsole <boolean>", `remove console`)
+  .option("--dropDebugger <boolean>", `remove console`)
+  .option("--esbuild <boolean>", `esbuild minify`)
 
   .action(async (options) => {
+    console.log("options", options);
     try {
       const { build } = await import("./build.js");
       build(options);

@@ -23,38 +23,55 @@ const resolveModule = require.resolve;
 module.exports = (params = {}) => {
   const {
     outDir = "build",
-    esBuild = true,
+    esbuild = "true",
     config: configFileName,
-    analyzer = false,
+    analyzer = "false",
+    dropConsole = "true",
+    dropDebugger = "true",
   } = params;
 
   const isDev = process.env.NODE_ENV === "development";
+
+  const removeConsole = dropConsole === "true";
+  const removeDebugger = dropDebugger === "true";
+  const drops = [];
+  if (removeConsole) {
+    drops.push("console");
+  }
+  if (removeDebugger) {
+    drops.push("debugger");
+  }
   const overWriteConfigPath = configFileName
     ? paths.resolveApp(configFileName)
     : paths.overWriteFile;
-
   let _terserPluginOptions = {
-    minify: esBuild ? TerserPlugin.esbuildMinify : TerserPlugin.terserMinify,
-    terserOptions: !esBuild
-      ? {
-          parse: {
-            ecma: 8,
-          },
-          compress: {
-            ecma: 5,
-            comparisons: false,
-            inline: 2,
-          },
-          mangle: {
-            safari10: true,
-          },
-          output: {
-            ecma: 5,
-            comments: false,
-            ascii_only: true,
-          },
-        }
-      : {},
+    minify:
+      esbuild === "true"
+        ? TerserPlugin.esbuildMinify
+        : TerserPlugin.terserMinify,
+    terserOptions:
+      esbuild === "false"
+        ? {
+            parse: {
+              ecma: 8,
+            },
+            compress: {
+              ecma: 5,
+              comparisons: false,
+              inline: 2,
+              drop_console: removeConsole,
+              drop_debugger: !isDev && removeDebugger,
+            },
+            mangle: {
+              safari10: true,
+            },
+            output: {
+              ecma: 5,
+              comments: false,
+              ascii_only: true,
+            },
+          }
+        : { drop: drops },
   };
   const outPutPath = paths.resolveApp(outDir);
   let config = {
@@ -201,7 +218,7 @@ module.exports = (params = {}) => {
     }
   }
 
-  if (!isDev && analyzer) {
+  if (!isDev && analyzer === "true") {
     config.plugins.push(new BundleAnalyzerPlugin());
   }
 
