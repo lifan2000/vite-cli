@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'url'
 import { defineConfig, splitVendorChunkPlugin } from "vite";
 import postcssFlexbugsFixes from "postcss-flexbugs-fixes";
 import { createHtmlPlugin } from "vite-plugin-html";
@@ -8,6 +9,7 @@ import { manualChunksPlugin } from "vite-plugin-webpackchunkname";
 import react from "@vitejs/plugin-react";
 import dayjs from "dayjs";
 import path from "path";
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const env = {
   CI_PIPELINE_ID: process.env["CI_PIPELINE_ID"],
   CI_COMMIT_SHA: process.env["CI_COMMIT_SHA"],

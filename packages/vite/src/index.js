@@ -8,8 +8,8 @@ cli
   .option("--port <port>", `[number] specify port`)
   .action(async (options) => {
     try {
-      const { createServer } = await import("./server.js");
-      createServer(options);
+      const { startServer } = await import("./server.js");
+      startServer(options);
     } catch (error) {
       console.log(chalk.bold.red("start server err!"));
       console.log(error);
